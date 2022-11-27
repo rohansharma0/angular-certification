@@ -8,7 +8,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   styleUrls: ['./tracker-form.component.css'],
 })
 export class TrackerFormComponent implements OnInit {
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private localStorage: LocalStorageService) {}
 
   // Form Group and Controls
   trackerForm = new FormGroup({
@@ -31,7 +31,7 @@ export class TrackerFormComponent implements OnInit {
       this.addStockSymbol.emit(symbol);
 
       // Add symbol to Localstorage
-      this.localStorageService.addStockSymbol(symbol);
+      this.localStorage.addStockSymbol(symbol);
 
       // Reset form
       this.trackerForm.reset();

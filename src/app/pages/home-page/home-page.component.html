@@ -1,9 +1,10 @@
 <h1 class="title">Stock Tracker</h1>
 
 <app-tracker-form (addStockSymbol)="addSymbol($event)"></app-tracker-form>
-<div>
-  <div *ngFor="let stock of stocks.slice().reverse()">
-    <app-stock-card [stock]="stock" (click)="remove(stock.symbol)">
+
+<div class="stock-container">
+  <div *ngFor="let stock of stockSymbols.slice().reverse()" class="stock">
+    <app-stock-card [stock]="stock" (removeStock)="remove($event)">
     </app-stock-card>
   </div>
 </div>

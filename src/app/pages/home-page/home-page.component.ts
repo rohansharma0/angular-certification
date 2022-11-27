@@ -23,49 +23,49 @@ export class HomePageComponent implements OnInit {
     this.stockSymbols = this.localStorage.getAllStocksSymbols();
 
     //get all stocks updated initially
-    this.updateStocks();
+    // this.updateStocks();
   }
 
-  updateStocks() {
-    this.stockSymbols.forEach((symbol) => {
-      this.addStockBySymbol(symbol);
-    });
-  }
+  // updateStocks() {
+  //   this.stockSymbols.forEach((symbol) => {
+  //     this.addStockBySymbol(symbol);
+  //   });
+  // }
 
   addSymbol(symbol: string) {
     //add symbol to stockSymbols array
     this.stockSymbols.push(symbol);
 
     //get stock by symbol and add to stocks array
-    this.addStockBySymbol(symbol);
+    // this.addStockBySymbol(symbol);
   }
 
   remove(stock: string) {
     // Remove symbol from array
     this.stockSymbols = this.stockSymbols.filter((item) => item !== stock);
 
-    this.updateStocks();
+    // this.updateStocks();
 
     // Remove stock from localStorage
     this.localStorage.removeStockSymbol(stock);
   }
 
-  addStockBySymbol(symbol: string) {
-    //--------------FIX-----------------
+  // addStockBySymbol(symbol: string) {
+  //   //--------------FIX-----------------
 
-    let stock: Stock = new Stock();
+  //   let stock: Stock = new Stock();
 
-    stock.symbol = symbol;
-    this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
-      stock.companyName = data?.result[0]?.description;
-    });
-    this.finnhub.getQuote(symbol).subscribe((data: any) => {
-      stock.changePercentage = data?.dp;
-      stock.currentPrice = data?.c;
-      stock.highPrice = data?.h;
-      stock.openingPrice = data?.o;
-    });
+  //   stock.symbol = symbol;
+  //   this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
+  //     stock.companyName = data?.result[0]?.description;
+  //   });
+  //   this.finnhub.getQuote(symbol).subscribe((data: any) => {
+  //     stock.changePercentage = data?.dp;
+  //     stock.currentPrice = data?.c;
+  //     stock.highPrice = data?.h;
+  //     stock.openingPrice = data?.o;
+  //   });
 
-    this.stocks.push(stock);
-  }
+  //   this.stocks.push(stock);
+  // }
 }
