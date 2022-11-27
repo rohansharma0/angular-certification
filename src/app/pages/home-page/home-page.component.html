@@ -1,4 +1,11 @@
-<p>home-page works!</p>
+<h1 class="title">Stock Tracker</h1>
 
-<app-tracker-form></app-tracker-form>
-<app-stock-card></app-stock-card>
+<app-tracker-form (addStockSymbol)="addSymbol($event)"></app-tracker-form>
+<div>
+  <div *ngFor="let stock of stocks.slice().reverse()">
+    <app-stock-card
+      [stock]="stock"
+      (click)="remove(stock.symbol)"
+    ></app-stock-card>
+  </div>
+</div>
