@@ -3,9 +3,7 @@
 <app-tracker-form (addStockSymbol)="addSymbol($event)"></app-tracker-form>
 <div>
   <div *ngFor="let stock of stocks.slice().reverse()">
-    <app-stock-card
-      [stock]="stock"
-      (click)="remove(stock.symbol)"
-    ></app-stock-card>
+    <app-stock-card [stock]="stock" (click)="remove(stock.symbol)">
+    </app-stock-card>
   </div>
 </div>

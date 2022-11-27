@@ -10,6 +10,5 @@ export class StockCardComponent implements OnInit {
   @Input() stock: Stock;
 
   constructor() {}
-
   ngOnInit() {}
 }

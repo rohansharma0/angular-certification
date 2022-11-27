@@ -18,6 +18,20 @@ export class HomePageComponent implements OnInit {
 
   stocks: Stock[] = [];
 
+  ngOnInit() {
+    //get all symbols from localStorage
+    this.stockSymbols = this.localStorage.getAllStocksSymbols();
+
+    //get all stocks updated initially
+    this.updateStocks();
+  }
+
+  updateStocks() {
+    this.stockSymbols.forEach((symbol) => {
+      this.addStockBySymbol(symbol);
+    });
+  }
+
   addSymbol(symbol: string) {
     //add symbol to stockSymbols array
     this.stockSymbols.push(symbol);
@@ -30,27 +44,28 @@ export class HomePageComponent implements OnInit {
     // Remove symbol from array
     this.stockSymbols = this.stockSymbols.filter((item) => item !== stock);
 
+    this.updateStocks();
+
     // Remove stock from localStorage
     this.localStorage.removeStockSymbol(stock);
   }
 
-  ngOnInit() {
-    //get all symbols from localStorage
-    this.stockSymbols = this.localStorage.getAllStocksSymbols();
-
-    //get all stocks updated initially
-    this.stockSymbols.forEach((sym) => {
-      this.addStockBySymbol(sym);
-    });
-  }
-
   addStockBySymbol(symbol: string) {
     //--------------FIX-----------------
-    this.finnhub.getCompanyNameBySymbol(symbol).subscribe((data: any) => {
-      this.stocks.push({
-        symbol: symbol,
-        companyName: data?.result[0]?.description,
-      });
+
+    let stock: Stock = new Stock();
+
+    stock.symbol = symbol;
+    this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
+      stock.companyName = data?.result[0]?.description;
     });
+    this.finnhub.getQuote(symbol).subscribe((data: any) => {
+      stock.changePercentage = data?.dp;
+      stock.currentPrice = data?.c;
+      stock.highPrice = data?.h;
+      stock.openingPrice = data?.o;
+    });
+
+    this.stocks.push(stock);
   }
 }
