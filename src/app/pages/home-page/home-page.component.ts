@@ -67,14 +67,14 @@ export class HomePageComponent implements OnInit {
     let stock: Stock = new Stock();
 
     stock.symbol = symbol;
-    this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
-      stock.companyName = data?.result[0]?.description;
+    this.finnhub.getCompanyName(symbol).subscribe((res: any) => {
+      stock.companyName = res?.result[0]?.description;
     });
-    this.finnhub.getQuote(symbol).subscribe((data: any) => {
-      stock.changePercentage = data?.dp;
-      stock.currentPrice = data?.c;
-      stock.highPrice = data?.h;
-      stock.openingPrice = data?.o;
+    this.finnhub.getQuote(symbol).subscribe((res: any) => {
+      stock.changePercentage = res?.dp;
+      stock.currentPrice = res?.c;
+      stock.highPrice = res?.h;
+      stock.openingPrice = res?.o;
     });
 
     this.stocks.push(stock);

@@ -1,11 +1,15 @@
 <p>sentiment</p>
 <p>{{ symbol }}</p>
+<p>{{ companyName }}</p>
 <div *ngIf="loading; else elseBlock">
   <app-loader></app-loader>
 </div>
 <ng-template #elseBlock>
   <div *ngFor="let sentiment of sentiments" class="">
-    <p>{{ sentiment.year }} {{ sentiment.month }}</p>
+    <p>
+      {{ sentiment.year }} {{ sentiment.month }} {{ sentiment.change }}
+      {{ sentiment.mspr }}
+    </p>
   </div>
 </ng-template>
 <a [routerLink]="['/']">Back to list of stocks</a>

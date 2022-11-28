@@ -11,6 +11,7 @@ import { LoaderService } from '../../services/loader.service';
 })
 export class SentimentPageComponent implements OnInit {
   symbol: string;
+  companyName: string;
 
   sentiments: Sentiment[] = [];
   loading: Boolean;
@@ -30,14 +31,17 @@ export class SentimentPageComponent implements OnInit {
       this.symbol = res.get('symbol');
     });
 
+    this.finnhub.getCompanyName(this.symbol).subscribe((res: any) => {
+      this.companyName = res?.result[0]?.description;
+    });
+
     this.loadSentiment();
   }
 
   loadSentiment() {
     this.finnhub.getSentiment(this.symbol).subscribe((res: any) => {
       this.sentiments = res.data;
-
-      console.log(res);
+      this.sentiments = this.sentiments.reverse().slice(0, 3);
     });
   }
 }

@@ -37,7 +37,16 @@
     </div>
     <div class="middle-right">
       <div class="logo">
-        <!-- Logo -->
+        <ng-template
+          *ngIf="stock.changePercentage > 0; then thenBlock; else elseBlock"
+        >
+        </ng-template>
+        <ng-template #thenBlock>
+          <img src="/assets/increase.jpg" />
+        </ng-template>
+        <ng-template #elseBlock>
+          <img src="assets/decrease.jpg" />
+        </ng-template>
       </div>
     </div>
   </div>
