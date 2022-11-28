@@ -22,8 +22,10 @@ export class FinnhubService {
   getSentiment(symbol: string) {
     const date = new Date();
     const currentDate = date.toISOString().substring(0, 10);
-    const previousDate = date.setMonth(date.getMonth() - 4);
-    const url = `https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${symbol}&from=${currentDate}&to=${currentDate}&token=${this.token}`;
+    const previousDateObj = new Date(date.setMonth(date.getMonth() - 4));
+    const previousDate = previousDateObj.toISOString().substring(0, 10);
+
+    const url = `https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${symbol}&from=${previousDate}&to=${currentDate}&token=${this.token}`;
     return this.http.get(url);
   }
 }

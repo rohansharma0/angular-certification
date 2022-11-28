@@ -1,15 +1,38 @@
-<p>sentiment</p>
-<p>{{ symbol }}</p>
-<p>{{ companyName }}</p>
-<div *ngIf="loading; else elseBlock">
-  <app-loader></app-loader>
-</div>
-<ng-template #elseBlock>
-  <div *ngFor="let sentiment of sentiments" class="">
-    <p>
-      {{ sentiment.year }} {{ sentiment.month }} {{ sentiment.change }}
-      {{ sentiment.mspr }}
-    </p>
+<div class="wrapper">
+  <div *ngIf="loading; else elseBlock">
+    <app-loader></app-loader>
   </div>
-</ng-template>
-<a [routerLink]="['/']">Back to list of stocks</a>
+  <ng-template #elseBlock
+    ><div class="sentiment-container">
+      <div class="card">
+        <div class="top">
+          <div class="top-left">
+            <div class="symbol">
+              <p>{{ symbol }}</p>
+            </div>
+            <div class="company-name">
+              <p>{{ companyName }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div *ngFor="let sentiment of sentiments" class="">
+            <p>
+              {{ sentiment.year }}
+            </p>
+            <p>
+              {{ sentiment.month }}
+            </p>
+            <p>
+              {{ sentiment.change }}
+            </p>
+            <p>
+              {{ sentiment.mspr }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <a [routerLink]="['/']">Back to list of stocks</a>
+    </div>
+  </ng-template>
+</div>
