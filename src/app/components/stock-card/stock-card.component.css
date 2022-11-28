@@ -1,5 +1,42 @@
 .card {
-  background-color: aliceblue;
+  background-color: #fff;
+  border-radius: 20px;
   color: black;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.top .top-left {
+  flex-direction: row;
+  display: flex;
+}
+.top .top-right {
+}
+.middle .middle-left {
+}
+.middle .middle-center {
+}
+.middle .middle-right {
+}
+
+.symbol {
 }

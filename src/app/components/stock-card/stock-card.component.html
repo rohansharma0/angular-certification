@@ -1,10 +1,47 @@
 <div class="card">
-  <p>{{ stock.symbol }}</p>
-  <p>{{ stock.companyName }}</p>
-  <p>{{ stock.currentPrice }}</p>
-  <p>{{ stock.highPrice }}</p>
-  <p>{{ stock.openingPrice }}</p>
-  <p>{{ stock.changePercentage }}</p>
-  <button (click)="remove(stock.symbol)">Delete</button>
-  <a [routerLink]="['/sentiment', stock.symbol]">See sentiment details </a>
+  <div class="top">
+    <div class="top-left">
+      <div class="symbol">
+        <p>{{ stock.symbol }}</p>
+      </div>
+      <div class="company-name">
+        <p>{{ stock.companyName }}</p>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="remove-btn">
+        <a (click)="remove(stock.symbol)">⨯</a>
+      </div>
+    </div>
+  </div>
+  <div class="middle">
+    <div class="middle-left">
+      <div class="change-percentage">
+        <p>Change today :</p>
+        <p>{{ stock.changePercentage }}</p>
+      </div>
+      <div class="current-price">
+        <p>Current price :</p>
+        <p>{{ stock.currentPrice }}</p>
+      </div>
+    </div>
+    <div class="middle-center">
+      <div class="opening-price">
+        <p>Opening price :</p>
+        <p>{{ stock.openingPrice }}</p>
+      </div>
+      <div class="high-price">
+        <p>High price :</p>
+        <p>{{ stock.highPrice }}</p>
+      </div>
+    </div>
+    <div class="middle-right">
+      <div class="logo">
+        <!-- Logo -->
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <a [routerLink]="['/sentiment', stock.symbol]">See sentiment details </a>
+  </div>
 </div>

@@ -1,4 +1,11 @@
 <p>sentiment</p>
 <p>{{ symbol }}</p>
-{{ date | date: 'yyyy-mm-dd' }}
+<div *ngIf="loading; else elseBlock">
+  <app-loader></app-loader>
+</div>
+<ng-template #elseBlock>
+  <div *ngFor="let sentiment of sentiments" class="">
+    <p>{{ sentiment.year }} {{ sentiment.month }}</p>
+  </div>
+</ng-template>
 <a [routerLink]="['/']">Back to list of stocks</a>

@@ -2,13 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* CSS HEX */
-/* --platinum: #E8E8E8ff;
---raisin-black: #181819;
---jet: #343438ff;
---tan-crayola: #E09465ff;
---neon-blue: #5D6BF4ff;
---mint: #46B580ff; */
+/* CSS HEX
+--eerie-black: #151515ff;
+--jet: #363636ff;
+--isabelline: #F2EEE9ff;
+--lavender-web: #E6DFF1ff;
+--non-photo-blue: #AFE8FFff;
+--white: #FFFFFFff; */
 
 * {
   margin: 0;
@@ -18,6 +18,6 @@
 }
 
 body {
-  background-color: #181819;
-  color: #e8e8e8ff;
+  background-color: #151515;
+  color: #fff;
 }

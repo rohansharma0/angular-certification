@@ -1,4 +1,4 @@
-export class Semtiment {
+export class Sentiment {
   symbol: string;
   year: number;
   month: number;
