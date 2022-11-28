@@ -30,9 +30,6 @@ export class TrackerFormComponent implements OnInit {
       // Add symbol to Array
       this.addStockSymbol.emit(symbol);
 
-      // Add symbol to Localstorage
-      this.localStorage.addStockSymbol(symbol);
-
       // Reset form
       this.trackerForm.reset();
     }

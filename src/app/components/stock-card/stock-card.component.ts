@@ -7,7 +7,7 @@ import { Stock } from '../../models/stock';
   styleUrls: ['./stock-card.component.css'],
 })
 export class StockCardComponent implements OnInit {
-  @Input() stock: string;
+  @Input() stock: Stock;
 
   @Output() removeStock = new EventEmitter<string>();
 

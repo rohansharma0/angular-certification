@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../../models/stock';
 import { FinnhubService } from '../../services/finnhub.service';
+import { LoaderService } from '../../services/loader.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
@@ -11,61 +12,72 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class HomePageComponent implements OnInit {
   constructor(
     private localStorage: LocalStorageService,
-    private finnhub: FinnhubService
-  ) {}
+    private finnhub: FinnhubService,
+    private loaderService: LoaderService
+  ) {
+    this.loaderService.loader.subscribe((res) => {
+      this.loading = res;
+    });
+  }
+
+  loading: Boolean;
 
   stockSymbols: string[] = [];
 
   stocks: Stock[] = [];
 
   ngOnInit() {
-    //get all symbols from localStorage
-    this.stockSymbols = this.localStorage.getAllStocksSymbols();
+    //get all stock symbols from localStorage
+    this.stockSymbols = this.localStorage.getAllStockSymbols();
 
-    //get all stocks updated initially
-    // this.updateStocks();
+    //update all stocks
+    this.updateStocks();
   }
-
-  // updateStocks() {
-  //   this.stockSymbols.forEach((symbol) => {
-  //     this.addStockBySymbol(symbol);
-  //   });
-  // }
 
   addSymbol(symbol: string) {
     //add symbol to stockSymbols array
     this.stockSymbols.push(symbol);
 
-    //get stock by symbol and add to stocks array
-    // this.addStockBySymbol(symbol);
+    //add stock
+    this.addStock(symbol);
+
+    //add stocks to localStorage
+    this.localStorage.addStockSymbol(symbol);
   }
 
-  remove(stock: string) {
-    // Remove symbol from array
-    this.stockSymbols = this.stockSymbols.filter((item) => item !== stock);
+  remove(symbol: string) {
+    // Remove stock symbol
+    this.stockSymbols = this.stockSymbols.filter((sym) => sym !== symbol);
 
-    // this.updateStocks();
+    // Remove stock
+    this.stocks = this.stocks.filter((stock) => stock.symbol !== symbol);
 
     // Remove stock from localStorage
-    this.localStorage.removeStockSymbol(stock);
+    this.localStorage.removeStockSymbol(symbol);
   }
 
-  // addStockBySymbol(symbol: string) {
-  //   //--------------FIX-----------------
+  updateStocks() {
+    this.stockSymbols.forEach((sym) => {
+      this.addStock(sym);
+    });
+  }
 
-  //   let stock: Stock = new Stock();
+  addStock(symbol: string) {
+    // ------------- FIX ---------------
+    let stock: Stock = new Stock();
 
-  //   stock.symbol = symbol;
-  //   this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
-  //     stock.companyName = data?.result[0]?.description;
-  //   });
-  //   this.finnhub.getQuote(symbol).subscribe((data: any) => {
-  //     stock.changePercentage = data?.dp;
-  //     stock.currentPrice = data?.c;
-  //     stock.highPrice = data?.h;
-  //     stock.openingPrice = data?.o;
-  //   });
+    stock.symbol = symbol;
+    this.finnhub.getCompanyName(symbol).subscribe((data: any) => {
+      stock.companyName = data?.result[0]?.description;
+    });
+    this.finnhub.getQuote(symbol).subscribe((data: any) => {
+      stock.changePercentage = data?.dp;
+      stock.currentPrice = data?.c;
+      stock.highPrice = data?.h;
+      stock.openingPrice = data?.o;
+    });
 
-  //   this.stocks.push(stock);
-  // }
+    this.stocks.push(stock);
+    // ------------ FIX ----------------
+  }
 }

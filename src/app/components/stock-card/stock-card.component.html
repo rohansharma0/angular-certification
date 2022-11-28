@@ -1,12 +1,10 @@
 <div class="card">
-  <!-- <p>{{ stock.symbol }}</p>
+  <p>{{ stock.symbol }}</p>
   <p>{{ stock.companyName }}</p>
   <p>{{ stock.currentPrice }}</p>
   <p>{{ stock.highPrice }}</p>
   <p>{{ stock.openingPrice }}</p>
   <p>{{ stock.changePercentage }}</p>
-  <button (click)="remove(stock.symbol)">Delete</button> -->
-
-  <p>{{ stock }}</p>
-  <button (click)="remove(stock)">Delete</button>
+  <button (click)="remove(stock.symbol)">Delete</button>
+  <a [routerLink]="['/sentiment', stock.symbol]">See sentiment details </a>
 </div>

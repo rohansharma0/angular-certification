@@ -6,30 +6,30 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   constructor() {}
 
-  addStockSymbol(stockSymbol: string): void {
-    const oldStockData = localStorage.getItem('stocks');
+  addStockSymbol(symbol: string): void {
+    const oldStocksData = localStorage.getItem('stocks');
 
-    if (oldStockData !== null) {
-      const oldStockSymbols: string[] = JSON.parse(oldStockData);
-      oldStockSymbols.push(stockSymbol);
+    if (oldStocksData !== null) {
+      const oldStockSymbols: string[] = JSON.parse(oldStocksData);
+      oldStockSymbols.push(symbol);
       localStorage.setItem('stocks', JSON.stringify(oldStockSymbols));
     } else {
-      localStorage.setItem('stocks', JSON.stringify([stockSymbol]));
+      localStorage.setItem('stocks', JSON.stringify([symbol]));
     }
   }
 
-  removeStockSymbol(stockSymbol: string): void {
-    const oldStockData = localStorage.getItem('stocks');
-    if (oldStockData !== null) {
-      const oldStockSymbols: string[] = JSON.parse(oldStockData);
+  removeStockSymbol(symbol: string): void {
+    const oldStocksData = localStorage.getItem('stocks');
+    if (oldStocksData !== null) {
+      const oldStockSymbols: string[] = JSON.parse(oldStocksData);
       const newStockSymbols: string[] = oldStockSymbols.filter(
-        (item) => item !== stockSymbol
+        (sym) => sym !== symbol
       );
       localStorage.setItem('stocks', JSON.stringify(newStockSymbols));
     }
   }
 
-  getAllStocksSymbols(): string[] {
+  getAllStockSymbols(): string[] {
     const stocksData = localStorage.getItem('stocks');
     if (stocksData !== null) {
       return JSON.parse(stocksData);

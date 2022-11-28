@@ -5,7 +5,7 @@ import { SentimentPageComponent } from './pages/sentiment-page/sentiment-page.co
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'sentiments/:symbol', component: SentimentPageComponent },
+  { path: 'sentiment/:symbol', component: SentimentPageComponent },
 ];
 
 @NgModule({

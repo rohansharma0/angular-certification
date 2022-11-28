@@ -3,8 +3,13 @@
 <app-tracker-form (addStockSymbol)="addSymbol($event)"></app-tracker-form>
 
 <div class="stock-container">
-  <div *ngFor="let stock of stockSymbols.slice().reverse()" class="stock">
-    <app-stock-card [stock]="stock" (removeStock)="remove($event)">
-    </app-stock-card>
+  <div *ngIf="loading; else elseBlock">
+    <app-loader></app-loader>
   </div>
+  <ng-template #elseBlock>
+    <div *ngFor="let stock of stocks.slice().reverse()" class="stock">
+      <app-stock-card [stock]="stock" (removeStock)="remove($event)">
+      </app-stock-card>
+    </div>
+  </ng-template>
 </div>

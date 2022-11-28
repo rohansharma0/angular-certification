@@ -18,4 +18,9 @@ export class FinnhubService {
     const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${this.token}`;
     return this.http.get(url);
   }
+
+  getSentiment(symbol: string) {
+    const url = `https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${symbol}&from=2015-01-01&to=2022-03-01&token=${this.token}`;
+    return this.http.get(url);
+  }
 }
