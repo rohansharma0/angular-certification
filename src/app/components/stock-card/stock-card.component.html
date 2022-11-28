@@ -8,34 +8,54 @@
         <p>{{ stock.companyName }}</p>
       </div>
     </div>
-    <div class="top-right">
+    <div>
       <div class="remove-btn" (click)="remove(stock.symbol)">
         <i class="gg-close"></i>
       </div>
     </div>
   </div>
   <div class="middle">
-    <div class="middle-left">
-      <div class="change-percentage">
-        <p>Change today :</p>
-        <p>{{ stock.changePercentage }}</p>
+    <div>
+      <div>
+        <p>Change today:</p>
+        <ng-template
+          *ngIf="
+            stock.changePercentage > 0;
+            then positiveChangeBlock;
+            else negativeChangeBlock
+          "
+        ></ng-template>
+        <ng-template #positiveChangeBlock>
+          <h6 class="change-percentage" [ngStyle]="{ color: 'green' }">
+            +{{ stock.changePercentage | number: '1.0-2' }}
+          </h6></ng-template
+        >
+        <ng-template #negativeChangeBlock>
+          <h6 class="change-percentage" [ngStyle]="{ color: 'red' }">
+            {{ stock.changePercentage | number: '1.0-2' }}
+          </h6></ng-template
+        >
       </div>
-      <div class="current-price">
-        <p>Current price :</p>
-        <p>{{ stock.currentPrice }}</p>
+      <div>
+        <p>Current price:</p>
+        <h6 class="current-price">
+          {{ stock.currentPrice | currency: 'USD' }}
+        </h6>
       </div>
     </div>
-    <div class="middle-center">
-      <div class="opening-price">
-        <p>Opening price :</p>
-        <p>{{ stock.openingPrice }}</p>
+    <div>
+      <div>
+        <p>Opening price:</p>
+        <h6 class="opening-price">
+          {{ stock.openingPrice | currency: 'USD' }}
+        </h6>
       </div>
-      <div class="high-price">
-        <p>High price :</p>
-        <p>{{ stock.highPrice }}</p>
+      <div>
+        <p>High price:</p>
+        <h6 class="high-price">{{ stock.highPrice | currency: 'USD' }}</h6>
       </div>
     </div>
-    <div class="middle-right">
+    <div>
       <div class="logo">
         <ng-template
           *ngIf="stock.changePercentage > 0; then thenBlock; else elseBlock"

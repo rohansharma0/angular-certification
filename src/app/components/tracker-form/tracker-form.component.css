@@ -15,7 +15,7 @@
   color: #fff;
 }
 .tracker-input::placeholder {
-  color: #00000080;
+  color: #ffffff30;
 }
 .tracker-input:focus-visible {
   border: 2px solid #fff;
@@ -35,5 +35,5 @@
 
 .tracker-btn:disabled {
   border: 2px solid #151515;
-  color: #00000080;
+  color: #ffffff30;
 }
