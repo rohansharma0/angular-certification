@@ -19,7 +19,6 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  width: 50vw;
 }
 
 .top {
@@ -53,10 +52,14 @@
 .bottom {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .back-btn {
   display: flex;
+  cursor: pointer;
+  color: #fff;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -67,6 +70,53 @@
   color: #fff;
   text-decoration: none;
   margin-left: 0.5rem;
+}
+.back-btn a:hover {
+  color: #9b9b9b;
+}
+
+.sentiment-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0 0 0;
+}
+
+.left h4 {
+  font-size: 1.2rem;
+}
+
+.left .row {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0 0 0;
+}
+.left .row p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.left .row h6 {
+  font-size: 1.3rem;
+}
+
+.logo {
+  width: 100%;
+  height: 6rem;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+}
+
+.logo img {
+  width: 70%;
+  height: 70%;
+}
+
+.separator {
+  width: 2px;
+  height: 6rem;
+  background-color: #000;
+  margin-left: 1rem;
 }
 
 .gg-arrow-left-r {

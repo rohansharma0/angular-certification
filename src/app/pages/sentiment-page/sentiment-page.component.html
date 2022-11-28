@@ -16,25 +16,51 @@
           </div>
         </div>
         <div class="bottom">
-          <div *ngFor="let sentiment of sentiments" class="">
-            <p>
-              {{ sentiment.year }}
-            </p>
-            <p>
-              {{ sentiment.month }}
-            </p>
-            <p>
-              {{ sentiment.change }}
-            </p>
-            <p>
-              {{ sentiment.mspr }}
-            </p>
+          <div
+            *ngFor="let sentiment of sentiments; index as i"
+            class="sentiment-wrapper"
+          >
+            <div class="left">
+              <h4>
+                {{ getMonthName(sentiment.year, sentiment.month) }}
+                {{ sentiment.year }}
+              </h4>
+              <div class="row">
+                <div>
+                  <p>Change:</p>
+                  <h6>
+                    {{ sentiment.change }}
+                  </h6>
+                </div>
+                <div>
+                  <p>MSPR:</p>
+                  <h6>
+                    {{ sentiment.mspr }}
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="logo">
+                <ng-template
+                  *ngIf="sentiment.change > 0; then thenBlock; else elseBlock"
+                >
+                </ng-template>
+                <ng-template #thenBlock>
+                  <img src="assets/increase.svg" />
+                </ng-template>
+                <ng-template #elseBlock>
+                  <img src="assets/decrease.svg" />
+                </ng-template>
+              </div>
+            </div>
+            <span *ngIf="i !== sentiments.length - 1" class="separator"></span>
           </div>
         </div>
       </div>
-      <div class="back-btn">
+      <div class="back-btn" [routerLink]="['/']">
         <i class="gg-arrow-left-r"></i>
-        <a [routerLink]="['/']">Back to list of stocks</a>
+        <a>Back to list of stocks</a>
       </div>
     </div>
   </ng-template>

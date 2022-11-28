@@ -26,6 +26,12 @@ export class SentimentPageComponent implements OnInit {
     });
   }
 
+  getMonthName(year: number, month: number): string {
+    const date = new Date(year, month, 0);
+    const monthName = date.toLocaleString('default', { month: 'long' });
+    return monthName.substring(0, 3);
+  }
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((res) => {
       this.symbol = res.get('symbol');

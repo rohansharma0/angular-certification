@@ -40,6 +40,10 @@
   color: #8b80f9;
 }
 
+.bottom a:hover {
+  color: #524ba5;
+}
+
 .top .top-left {
   flex-direction: row;
   display: flex;
