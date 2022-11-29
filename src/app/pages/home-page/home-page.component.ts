@@ -63,7 +63,6 @@ export class HomePageComponent implements OnInit {
   }
 
   addStock(symbol: string) {
-    // ------------- FIX ---------------
     let stock: Stock = new Stock();
 
     stock.symbol = symbol;
@@ -78,6 +77,5 @@ export class HomePageComponent implements OnInit {
     });
 
     this.stocks.push(stock);
-    // ------------ FIX ----------------
   }
 }
