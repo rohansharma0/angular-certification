@@ -14,6 +14,7 @@ export class StockCardComponent implements OnInit {
 
   constructor() {}
 
+  //remove symbol
   remove(symbol: string) {
     this.removeStock.emit(symbol);
   }

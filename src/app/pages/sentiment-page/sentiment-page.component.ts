@@ -26,6 +26,7 @@ export class SentimentPageComponent implements OnInit {
     });
   }
 
+  // get month name from year and month number
   getMonthName(year: number, month: number): string {
     const date = new Date(year, month, 0);
     const monthName = date.toLocaleString('default', { month: 'long' });
@@ -44,6 +45,7 @@ export class SentimentPageComponent implements OnInit {
     this.loadSentiment();
   }
 
+  // load sentiment details
   loadSentiment() {
     this.finnhub.getSentiment(this.symbol).subscribe((res: any) => {
       this.sentiments = res.data;

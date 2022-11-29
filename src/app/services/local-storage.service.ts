@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   constructor() {}
 
+  //add stock symbol to loacal storage
   addStockSymbol(symbol: string): void {
     const oldStocksData = localStorage.getItem('stocks');
 
@@ -18,6 +19,7 @@ export class LocalStorageService {
     }
   }
 
+  //remove stock symbol to loacal storage
   removeStockSymbol(symbol: string): void {
     const oldStocksData = localStorage.getItem('stocks');
     if (oldStocksData !== null) {
@@ -29,6 +31,7 @@ export class LocalStorageService {
     }
   }
 
+  //get all symbol to loacal storage
   getAllStockSymbols(): string[] {
     const stocksData = localStorage.getItem('stocks');
     if (stocksData !== null) {
