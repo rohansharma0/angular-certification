@@ -9,7 +9,11 @@
       </div>
     </div>
     <div>
-      <div class="remove-btn" (click)="remove(stock.symbol)">
+      <div
+        class="remove-btn"
+        (click)="remove(stock.symbol)"
+        id="{{ 'remove' + stock.symbol }}"
+      >
         <i class="gg-close"></i>
       </div>
     </div>
@@ -71,6 +75,10 @@
     </div>
   </div>
   <div class="bottom">
-    <a [routerLink]="['/sentiment', stock.symbol]">See sentiment details </a>
+    <a
+      [routerLink]="['/sentiment', stock.symbol]"
+      id="{{ 'sentiment' + stock.symbol }}"
+      >See sentiment details
+    </a>
   </div>
 </div>

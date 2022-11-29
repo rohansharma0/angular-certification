@@ -63,6 +63,7 @@ export class HomePageComponent implements OnInit {
   }
 
   addStock(symbol: string) {
+    //converting symbols into stock after fetching details and adding into the array
     let stock: Stock = new Stock();
 
     stock.symbol = symbol;

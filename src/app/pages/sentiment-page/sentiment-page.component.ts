@@ -14,6 +14,7 @@ export class SentimentPageComponent implements OnInit {
   companyName: string;
 
   sentiments: Sentiment[] = [];
+
   loading: Boolean;
 
   constructor(
@@ -34,14 +35,17 @@ export class SentimentPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // getting symbol from url parameter
     this.activatedRoute.paramMap.subscribe((res) => {
       this.symbol = res.get('symbol');
     });
 
+    // getting company name from the symbol
     this.finnhub.getCompanyName(this.symbol).subscribe((res: any) => {
       this.companyName = res?.result[0]?.description;
     });
 
+    // load sentiment details
     this.loadSentiment();
   }
 
