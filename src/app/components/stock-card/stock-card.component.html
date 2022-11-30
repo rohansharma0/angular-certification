@@ -31,12 +31,12 @@
         ></ng-template>
         <ng-template #positiveChangeBlock>
           <h6 class="change-percentage" [ngStyle]="{ color: 'green' }">
-            +{{ stock.changePercentage | number: '1.0-2' }}
+            +{{ stock.changePercentage | number: '1.0-2' }} %
           </h6></ng-template
         >
         <ng-template #negativeChangeBlock>
           <h6 class="change-percentage" [ngStyle]="{ color: 'red' }">
-            {{ stock.changePercentage | number: '1.0-2' }}
+            {{ stock.changePercentage | number: '1.0-2' }} %
           </h6></ng-template
         >
       </div>
